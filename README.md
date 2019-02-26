@@ -4,7 +4,7 @@
 
 This project proves how to login to a centralised service simply using Scatters sign feature as a method of authentication.
 
-![POC Concept](https://github.com/altercation/solarized/raw/master/img/solarized-palette.png)
+![POC Concept](https://github.com/diri-chat/scatter-auth-poc/raw/master/screenshot.png)
 
 The Node.JS/backend service hosts a `POST /login` endpoint which receives a post body of
 
