@@ -1,4 +1,4 @@
-const parseMessage = require("./parseMessage");
+const parseMessage = require("./src/parseMessage");
 
 const arg =
   "thekellygang would like to login using the active permission. Block ID: 44738933 A1B6A6B74882";
