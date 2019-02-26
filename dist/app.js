@@ -17,8 +17,10 @@ const bodyParser = require("body-parser");
 const express = require("express");
 const app = express();
 app.use(bodyParser.json());
-app.listen(3001, () => {
-    console.log("Running on port 3001");
+// Bind the app to a specified port
+var port = process.env.PORT || 3001;
+app.listen(port, () => {
+    console.log(`Running on port ${port}`);
 });
 const expireMinutes = 600000;
 app.post("/login", (req, res) => __awaiter(this, void 0, void 0, function* () {
