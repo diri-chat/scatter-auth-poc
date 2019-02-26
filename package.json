@@ -2,6 +2,9 @@
   "name": "veri",
   "version": "1.0.0",
   "main": "index.js",
+  "engines": {
+    "node": "10.x"
+  },
   "license": "AGPL-3.0-only",
   "scripts": {
     "build": "tsc",
