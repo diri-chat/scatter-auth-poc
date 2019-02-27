@@ -3,12 +3,14 @@ import verifyBlockInfo from "./verifyBlockInfo";
 import verifySignature from "./verifySignature";
 import { JsonRpc } from "eosjs";
 import fetch from "node-fetch";
+const cors = require("cors");
 const bodyParser = require("body-parser");
 
 const express = require("express");
 const app = express();
 
 app.use(bodyParser.json());
+app.use(cors());
 
 // Bind the app to a specified port
 var port = process.env.PORT || 3001;

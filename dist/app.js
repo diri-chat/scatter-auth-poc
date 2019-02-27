@@ -13,10 +13,12 @@ const verifyBlockInfo_1 = require("./verifyBlockInfo");
 const verifySignature_1 = require("./verifySignature");
 const eosjs_1 = require("eosjs");
 const node_fetch_1 = require("node-fetch");
+const cors = require("cors");
 const bodyParser = require("body-parser");
 const express = require("express");
 const app = express();
 app.use(bodyParser.json());
+app.use(cors());
 // Bind the app to a specified port
 var port = process.env.PORT || 3001;
 app.listen(port, () => {
