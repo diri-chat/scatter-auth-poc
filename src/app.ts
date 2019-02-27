@@ -18,15 +18,15 @@ app.listen(port, () => {
   console.log(`Running on port ${port}`);
 });
 
-const expireMinutes = 600000;
+const expireMinutes = 2;
 
 app.post("/login", async (req, res) => {
-  const { message, signature } = req.body;
-  const { accountName, permissionName, blockNumber, blockId } = parseMessage(
-    message
-  );
-
   try {
+    const { message, signature } = req.body;
+    const { accountName, permissionName, blockNumber, blockId } = parseMessage(
+      message
+    );
+
     const timeStampIsValid = await verifyBlockInfo(
       blockNumber,
       blockId,
