@@ -1,4 +1,5 @@
 import { rpc } from "./app";
+import * as moment from "moment";
 
 export default async (
   blockNumber,
@@ -13,11 +14,18 @@ export default async (
   const blocksMatch = claimedBlockId === realBlockId;
   if (!blocksMatch) throw "Blocks claimed in signature dont match";
 
-  const realBlocktime = new Date(blockData.timestamp);
-  const timeNow = new Date();
-  const minutesDifference = (timeNow - realBlocktime) / 60000;
-  if (minutesDifference > expireMinutes)
-    throw `Sign time is greater than expired time of ${expireMinutes} minutes.`;
+  const irreversibleBlockGraceMinutes = 2.5;
+  const signatureTime = moment.utc(blockData.timestamp);
+  const timeCutOff = moment
+    .utc()
+    .subtract(expireMinutes, "minutes")
+    .subtract(irreversibleBlockGraceMinutes, "minutes");
+
+  const secondsSpare = signatureTime.diff(timeCutOff, "seconds");
+  console.log(`Signature timestamp difference is ${secondsSpare} seconds.`);
+
+  if (moment(signatureTime).isBefore(timeCutOff))
+    throw `Signature is signed with Block ID too old from now.`;
 
   return true;
 };
