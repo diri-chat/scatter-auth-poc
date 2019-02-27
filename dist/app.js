@@ -24,11 +24,11 @@ var port = process.env.PORT || 3001;
 app.listen(port, () => {
     console.log(`Running on port ${port}`);
 });
-const expireMinutes = 600000;
+const expireMinutes = 2;
 app.post("/login", (req, res) => __awaiter(this, void 0, void 0, function* () {
-    const { message, signature } = req.body;
-    const { accountName, permissionName, blockNumber, blockId } = parseMessage_1.default(message);
     try {
+        const { message, signature } = req.body;
+        const { accountName, permissionName, blockNumber, blockId } = parseMessage_1.default(message);
         const timeStampIsValid = yield verifyBlockInfo_1.default(blockNumber, blockId, expireMinutes);
         const signatureIsValid = yield verifySignature_1.default(message, signature, accountName, permissionName);
         return res.send({
